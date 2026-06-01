@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-eval-guardrails-api-canary
+  namespace: prod
+  labels:
+    app: llm-eval-guardrails-api
+    track: canary
+    version: canary
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: llm-eval-guardrails-api
+      track: canary
+  template:
+    metadata:
+      labels:
+        app: llm-eval-guardrails-api
+        track: canary
+        version: canary
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+        - name: api
+          image: ghcr.io/alakhdeepsingh/llm-eval-guardrails-api:canary
+          ports:
+            - containerPort: 8100
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8100
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          env:
+            - name: ENV
+              value: "canary"
+            - name: LOG_LEVEL
+              value: "DEBUG"

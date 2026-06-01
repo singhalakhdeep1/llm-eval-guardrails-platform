@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-eval-guardrails-api
+  namespace: staging
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: llm-eval-guardrails-api
+  template:
+    metadata:
+      labels:
+        app: llm-eval-guardrails-api
+    spec:
+      containers:
+        - name: api
+          image: ghcr.io/alakhdeepsingh/llm-eval-guardrails-api:staging
+          ports:
+            - containerPort: 8100
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8100
+            initialDelaySeconds: 5
+            periodSeconds: 10

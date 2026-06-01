@@ -1,0 +1,18 @@
+[
+    {
+        "input": "Summarize the customer refund policy.",
+        "expected_keywords": [
+            "refund",
+            "customer",
+            "policy"
+        ]
+    },
+    {
+        "input": "List the required controls for production access.",
+        "expected_keywords": [
+            "production",
+            "access",
+            "controls"
+        ]
+    }
+]

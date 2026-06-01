@@ -1,0 +1,14 @@
+[project]
+name = "llm-eval-guardrails-api"
+version = "0.1.0"
+description = "FastAPI backend for prompt evaluation, guardrails, and release gating"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "pydantic>=2.8.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

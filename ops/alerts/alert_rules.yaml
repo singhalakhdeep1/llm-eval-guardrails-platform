@@ -1,0 +1,17 @@
+groups:
+  - name: llm-eval-guardrails-alerts
+    rules:
+      - alert: EvalRunFailureSpike
+        expr: rate(eval_runs_failed_total{job="llm-eval-guardrails"}[10m]) > 0.1
+        for: 10m
+        labels:
+          severity: critical
+        annotations:
+          summary: Evaluation run failures spiking
+      - alert: HighApiLatencyP95
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{job="llm-eval-guardrails"}[5m])) by (le)) > 0.8
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: P95 API latency breached

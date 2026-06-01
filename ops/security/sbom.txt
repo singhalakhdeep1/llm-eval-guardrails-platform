@@ -1,0 +1,63 @@
+SPDXVersion: SPDX-2.3
+DataLicense: CC0-1.0
+SPDXID: SPDXRef-DOCUMENT
+DocumentName: llm-eval-guardrails-platform
+DocumentNamespace: https://github.com/Alakhdeepsingh/llm-eval-guardrails-platform/sbom-v1.0.0
+Creator: Tool: ops/security/dependency_scan.py
+Creator: Organization: Alakhdeepsingh
+Created: 2025-06-01T00:00:00Z
+
+## Runtime Dependencies
+
+PackageName: Python
+SPDXID: SPDXRef-Package-Python
+PackageVersion: 3.12
+PackageSupplier: Organization: Python Software Foundation
+PackageLicenseConcluded: PSF-2.0
+PackageDownloadLocation: https://www.python.org/downloads/release/python-3120/
+FilesAnalyzed: false
+ExternalRef: SECURITY cpe23Type cpe:2.3:a:python:python:3.12.0:*:*:*:*:*:*:*
+
+PackageName: fastapi
+SPDXID: SPDXRef-Package-fastapi
+PackageVersion: 0.115.0
+PackageSupplier: Organization: Sebastián Ramírez (tiangolo)
+PackageLicenseConcluded: MIT
+PackageDownloadLocation: https://pypi.org/project/fastapi/0.115.0/
+FilesAnalyzed: false
+ExternalRef: SECURITY cpe23Type cpe:2.3:a:tiangolo:fastapi:0.115.0:*:*:*:*:*:*:*
+
+PackageName: uvicorn
+SPDXID: SPDXRef-Package-uvicorn
+PackageVersion: 0.30.0
+PackageSupplier: Organization: Encode OSS Ltd
+PackageLicenseConcluded: BSD-3-Clause
+PackageDownloadLocation: https://pypi.org/project/uvicorn/0.30.0/
+FilesAnalyzed: false
+ExternalRef: SECURITY cpe23Type cpe:2.3:a:encode:uvicorn:0.30.0:*:*:*:*:*:*:*
+
+PackageName: pydantic
+SPDXID: SPDXRef-Package-pydantic
+PackageVersion: 2.8.0
+PackageSupplier: Organization: Pydantic Services Inc.
+PackageLicenseConcluded: MIT
+PackageDownloadLocation: https://pypi.org/project/pydantic/2.8.0/
+FilesAnalyzed: false
+ExternalRef: SECURITY cpe23Type cpe:2.3:a:pydantic:pydantic:2.8.0:*:*:*:*:*:*:*
+
+PackageName: setuptools
+SPDXID: SPDXRef-Package-setuptools
+PackageVersion: 68.0.0
+PackageSupplier: Organization: Python Packaging Authority
+PackageLicenseConcluded: MIT
+PackageDownloadLocation: https://pypi.org/project/setuptools/68.0.0/
+FilesAnalyzed: false
+ExternalRef: SECURITY cpe23Type cpe:2.3:a:python:setuptools:68.0.0:*:*:*:*:*:*:*
+
+## Relationships
+
+Relationship: SPDXRef-DOCUMENT DESCRIBES SPDXRef-Package-Python
+Relationship: SPDXRef-Package-Python DYNAMIC_LINK SPDXRef-Package-fastapi
+Relationship: SPDXRef-Package-Python DYNAMIC_LINK SPDXRef-Package-uvicorn
+Relationship: SPDXRef-Package-Python DYNAMIC_LINK SPDXRef-Package-pydantic
+Relationship: SPDXRef-Package-Python DYNAMIC_LINK SPDXRef-Package-setuptools

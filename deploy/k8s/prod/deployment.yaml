@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llm-eval-guardrails-api
+  namespace: prod
+  labels:
+    app: llm-eval-guardrails-api
+    track: stable
+    version: v1
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: llm-eval-guardrails-api
+      track: stable
+  template:
+    metadata:
+      labels:
+        app: llm-eval-guardrails-api
+        track: stable
+        version: v1
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+      containers:
+        - name: api
+          image: ghcr.io/alakhdeepsingh/llm-eval-guardrails-api:latest
+          ports:
+            - containerPort: 8100
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "512Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8100
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            failureThreshold: 3
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8100
+            initialDelaySeconds: 15
+            periodSeconds: 20
+            failureThreshold: 3
+          env:
+            - name: ENV
+              value: "production"
+            - name: LOG_LEVEL
+              value: "INFO"

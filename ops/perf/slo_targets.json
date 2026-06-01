@@ -1,0 +1,9 @@
+{
+    "project": "llm-eval-guardrails-platform",
+    "type": "api",
+    "thresholds": {
+        "success_rate_min": 0.95,
+        "avg_latency_ms_max": 1500,
+        "rps_min": 0.2
+    }
+}

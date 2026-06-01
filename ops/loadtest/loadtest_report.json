@@ -1,0 +1,11 @@
+{
+  "target": "http://localhost:8100/health",
+  "concurrency": 2,
+  "requests": 10,
+  "success": 0,
+  "failure": 10,
+  "success_rate": 0.0,
+  "avg_latency_ms": 4161.18,
+  "duration_sec": 20.81,
+  "rps": 0.48
+}

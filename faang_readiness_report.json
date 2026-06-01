@@ -1,0 +1,29 @@
+{
+  "project": "llm-eval-guardrails-platform",
+  "checks_passed": 20,
+  "checks_total": 20,
+  "score": 1.0,
+  "ready": true,
+  "checks": {
+    "RELEASE_CHECKLIST.md": true,
+    "FAANG_READINESS_PLAN.md": true,
+    ".github/workflows/ci.yml": true,
+    "apps/api/scripts/run_dataset_smoke.py": true,
+    "apps/api/tests/test_eval_service.py": true,
+    "ops/loadtest/run_load_test.py": true,
+    "ops/alerts/alert_rules.yaml": true,
+    "ops/runbooks/incident_runbook.md": true,
+    "ops/perf/slo_targets.json": true,
+    "ops/perf/validate_slo.py": true,
+    "ops/evidence/CLOUD_SCALE_EVIDENCE.md": true,
+    "ops/gameday/GAMEDAY_CHECKLIST.md": true,
+    "deploy/k8s/staging/deployment.yaml": true,
+    "deploy/k8s/staging/service.yaml": true,
+    "SECURITY.md": true,
+    "ops/security/dependency_scan.py": true,
+    "ops/security/sbom.txt": true,
+    "docs/ARCHITECTURE.md": true,
+    "deploy/k8s/prod/deployment.yaml": true,
+    "deploy/k8s/canary/deployment.yaml": true
+  }
+}
