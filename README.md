@@ -1,10 +1,8 @@
 # LLM Evaluation and Guardrails Platform
 
-A local-first control plane for prompt quality assurance, regression evaluation, guardrail checks, and release readiness decisions.
+A local-first control plane for prompt quality assurance, regression evaluation, guardrail checks, and release readiness decisions. Designed to demonstrate how an AI team can move from ad hoc prompt testing to a structured evaluation workflow with measurable quality gates.
 
-This project is designed to demonstrate how an AI team can move from ad hoc prompt testing to a structured evaluation workflow with measurable quality gates.
-
-## What this project does
+## Features
 
 - Stores versioned prompts with metadata (owner, model, risk level)
 - Runs evaluation suites against prompts
@@ -13,30 +11,25 @@ This project is designed to demonstrate how an AI team can move from ad hoc prom
 - Tracks run-level analytics (blocked runs, top failure mode)
 - Provides a frontend dashboard for manual QA and review
 
-## Current implementation status
+## Implementation Status
 
-Implemented now:
-
+Implemented:
 - FastAPI backend for prompt registry, evaluation runs, scorecards, and analytics
 - Next.js dashboard for running evaluations and reviewing outcomes
 - JSON-backed local persistence for reproducible demo sessions
 - Seeded prompt versions for instant first-run usage
 - Backend unit tests for service-level logic
-
-Implemented in this iteration:
-
 - Dataset registry endpoint that discovers local eval suites from `evals/*.json`
 - Run-from-dataset API for launching evaluations without manually constructing `eval_cases`
 - Service tests for dataset discovery and dataset-driven runs
 
-Planned next:
-
+Planned:
 - Dataset upload and versioning UI
 - Batch evaluation execution via worker queue
 - Cost and latency telemetry
 - Model-to-model comparison view
 
-## Tech stack
+## Tech Stack
 
 - Frontend: Next.js 15, TypeScript
 - Backend: FastAPI, Python 3.12
@@ -44,7 +37,7 @@ Planned next:
 - Target infra (planned): PostgreSQL, Redis, ClickHouse
 - Evaluation style: promptfoo-inspired deterministic scoring
 
-## Repository structure
+## Repository Structure
 
 ```text
 llm-eval-guardrails-platform/
@@ -59,7 +52,7 @@ llm-eval-guardrails-platform/
   docker-compose.yml
 ```
 
-## Local setup
+## Local Setup
 
 ### Prerequisites
 
@@ -190,3 +183,9 @@ This logic is intentionally strict to emulate production rollout controls.
 3. Track token cost and latency per run
 4. Add run comparison and regression diffing
 5. Add role-based access and audit trail
+
+---
+
+## 📝 License
+
+Proprietary - All rights reserved.
