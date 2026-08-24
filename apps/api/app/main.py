@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.routes.evaluations import router as evaluations_router
+from app.routes.guardrails import router as guardrails_router
 
 app = FastAPI(
     title="LLM Evaluation and Guardrails Platform API",
@@ -24,3 +25,4 @@ def healthcheck() -> dict[str, str]:
 
 
 app.include_router(evaluations_router)
+app.include_router(guardrails_router)
