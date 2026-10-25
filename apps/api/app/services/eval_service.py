@@ -111,7 +111,7 @@ class EvalService:
         case_results: List[EvaluationCaseResult] = []
 
         for case in payload.eval_cases:
-            output = self._simulate_output(prompt.system_prompt, case.input)
+            output = self._call_llm(prompt.system_prompt, case.input)
             output_lower = output.lower()
             expected_keywords = [keyword.lower() for keyword in case.expected_keywords if keyword.strip()]
             matched = [keyword for keyword in expected_keywords if keyword in output_lower]
@@ -238,7 +238,29 @@ class EvalService:
             top_failure_mode=top_failure_mode,
         )
 
-    def _simulate_output(self, system_prompt: str, eval_input: str) -> str:
+    def _call_llm(self, system_prompt: str, eval_input: str) -> str:
+        api_key = os.getenv("OPENAI_API_KEY")
+        if api_key:
+            try:
+                from openai import OpenAI  # noqa: PLC0415
+                client = OpenAI(api_key=api_key)
+                response = client.chat.completions.create(
+                    model="gpt-4o-mini",
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": eval_input},
+                    ],
+                    max_tokens=300,
+                    temperature=0.1,
+                )
+                return response.choices[0].message.content or ""
+            except Exception as exc:  # noqa: BLE001
+                normalized = system_prompt.strip().replace("\n", " ")
+                return (
+                    f"[LLM unavailable: {exc}] Based on provided policy context, the assistant "
+                    f"using '{normalized[:60]}' responds to '{eval_input}' with grounded guidance."
+                )
+        # Deterministic fallback — no API key configured
         normalized_prompt = system_prompt.strip().replace("\n", " ")
         return (
             f"Based on provided policy context, the assistant using '{normalized_prompt[:60]}' "
